@@ -1,0 +1,51 @@
+* {
+  font-family: Optima, Calibri, sans-serif;
+}
+
+.hg {
+  min-height: 90vh;
+}
+.hg,
+.hg-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.hg-body {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.hg-filters {
+  order: -1;
+}
+
+.hg-filters, .hg-content {
+  border: 1px grey solid;
+}
+
+footer {
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .hg-body {
+    flex-direction: row;
+    flex: 1;
+  }
+  .hg-content {
+    flex: 1;
+  }
+  .hg-filters {
+    /* 12em is the width of the columns */
+    flex: 0 0 12em;
+    margin-right: 1.5em;
+  }
+  header {
+    padding-left: 2em;
+  }
+  footer {
+    padding-left: 2em;
+  }
+}
+
