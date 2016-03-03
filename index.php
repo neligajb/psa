@@ -11,15 +11,14 @@
 <header><h1>PSA Players Database</h1></header>
 <div ng-app="myApp" class="hg-body">
   <main class="hg-content" ng-controller="GetPlayers">
-    Main Content
     <table id="playerTable">
       <tr>
         <th>Name</th><th>Rank</th><th>Age</th><th>Country</th><th>Sponsors</th><th><!--ID--></th>
       </tr>
-      <tr ng-repeat="player in players">
+      <tr class="player-row" ng-repeat="player in players">
         <td>{{player.name}}</td><td>{{player.rank}}</td><td>{{player.age}}</td>
         <td>{{player.country}}</td>
-<!--        <td><span class="sponsors" ng-repeat="sponsor in player.sponsors">{{sponsor}}</span></td>-->
+        <td class="sponsor"><span ng-repeat="sponsor in player.sponsors">{{sponsor}}</span></td><td><!--ID--></td>
       </tr>
     </table>
   </main>
