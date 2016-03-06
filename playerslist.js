@@ -1,8 +1,34 @@
 var app = angular.module('myApp', []);
 
-app.controller('GetPlayers', function($scope, $http) {
-    $http.get('playerdata.php').success(function(data) {
-       $scope.players = data;
+app.controller('GetPsaData', function($scope, $http) {
+    $http.get("playerdata.php").success(function(data) {
+       $scope.psaData = data;
     });
+
+    $scope.filter = function() {
+        var $query = 'playerdata.php?';
+        $query += 'country=' + $scope.selectedCountry + '&sponsor=' + $scope.selectedSponsor + '&tournament=' 
+            + $scope.selectedTournament;
+        $http.get($query).success(function(data) {
+            $scope.psaData = data;
+        });
+    };
+
+    $scope.addPlayer = function () {
+       $http({
+          url: "playerdata.php",
+          method: "POST",
+          data: {
+              'fname' : $scope.new_fname,
+              'lname' : $scope.new_lname,
+              'dob' : $scope.new_dob,
+              'country' : $scope.new_country,
+              'sponsor' : $scope.new_sponsor
+          }
+      }).success(function() {
+          alert('Player Added');
+      });
+
+    };
 });
     
