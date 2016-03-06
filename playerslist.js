@@ -15,20 +15,20 @@ app.controller('GetPsaData', function($scope, $http) {
     };
 
     $scope.addPlayer = function () {
-       $http({
-          url: "playerdata.php",
-          method: "POST",
-          data: {
-              'fname' : $scope.new_fname,
-              'lname' : $scope.new_lname,
-              'dob' : $scope.new_dob,
-              'country' : $scope.new_country,
-              'sponsor' : $scope.new_sponsor
-          }
-      }).success(function() {
-          alert('Player Added');
-      });
-
+        $http({
+            method: 'POST',
+            url: 'playerdata.php',
+            data: {
+                'fname': $scope.new_fname,
+                'lname': $scope.new_lname,
+                'dob': $scope.new_dob,
+                'country': $scope.new_country,
+                'sponsor': $scope.new_sponsor
+            },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function () {
+            alert('Player Added');
+        });
     };
 });
     

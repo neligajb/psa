@@ -15,6 +15,13 @@ global $db_name;
 //set timezone
 date_default_timezone_set('UTC');
 
+//check for POST data
+$postData = array();
+if (isset($_POST))
+{
+  $postData = json_decode(file_get_contents('php://input'), true);
+}
+
 //connect to db
 $mysqli = new mysqli($db_address, $db_user, $db_password, $db_name);
 if ($mysqli->connect_errno)
