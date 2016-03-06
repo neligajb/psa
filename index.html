@@ -7,9 +7,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
   <script src="playerslist.js"></script>
 </head>
-<body class="hg">
+<body class="hg" ng-app="myApp" ng-controller="GetPsaData">
 <header><h1>PSA Players Database</h1></header>
-<div ng-app="myApp" ng-controller="GetPsaData" class="hg-body">
+<p>Tracking {{psaData.count}} players</p>
+<div class="hg-body">
   <main class="hg-content" >
     <table id="playerTable">
       <tr>
@@ -33,23 +34,93 @@
     <h5>Tournaments (show finalists)</h5>
     <select ng-model="selectedTournament" ng-options="y for (x, y) in psaData.tournaments" ng-change="filter()">
     </select>
-    <a id="openModalButton" href="#openModal">Add a player</a>
-    <div id="openModal" class="modalDialog">
+    <a id="openAddPlayerModalButton" class="openModalButton" href="#openAddPlayerModal">+Player</a>
+    <div id="openAddPlayerModal" class="modalDialog">
       <div>
-        <a href="#close" title="Close" class="close">X</a>
+        <a ng-click="filter()" href="#close" title="Close" class="close">X</a>
         <h2>Add a player</h2>
         <form>
-          <h4>First Name</h4>
+          <label>First Name</label>
           <input type="text" ng-model="new_fname">
-          <h4>Last Name</h4>
+          <label>Last Name</label>
           <input type="text" ng-model="new_lname">
-          <h4>Date of birth</h4>
+          <label>Rank</label>
+          <input type="text" ng-model="new_rank">
+          <label>Date of birth (YYYY-MM-DD)</label>
           <input type="text" ng-model="new_dob">
-          <h4>Country</h4>
+          <label>Country</label>
           <select ng-model="new_country" ng-options="y for (x, y) in psaData.countries"></select>
-          <h4>Sponsors</h4>
-          <select ng-model="new_sponsor" ng-options="y for (x, y) in psaData.sponsors"></select>
           <button ng-click="addPlayer()">Add Player</button>
+        </form>
+      </div>
+    </div>
+    <a id="openAddTournamentModalButton" class="openModalButton" href="#openAddTournamentModal">+Tournament</a>
+    <div id="openAddTournamentModal" class="modalDialog">
+      <div>
+        <a ng-click="filter()" href="#close" title="Close" class="close">X</a>
+        <h2>Add a tournament</h2>
+        <form>
+          <div>
+            <label>Name</label>
+            <input type="text" ng-model="new_tournament_name">
+            <label>City</label>
+            <input type="text" ng-model="new_tournament_city">
+            <label>Country</label>
+            <select ng-model="new_tournament_country" ng-options="y for (x, y) in psaData.countries"></select>
+            <label>Prize Money</label>
+            <input type="text" ng-model="new_tournament_prize_money">
+            <label>Year (YYYY)</label>
+            <input type="text" ng-model="new_tournament_year">
+          </div>
+          <div>
+            <label>Winner</label>
+            <select ng-model="new_winner" ng-options="player.name for player in psaData.players"></select>
+            <label>Runner-Up</label>
+            <select ng-model="new_runnerup" ng-options="player.name for player in psaData.players"></select>
+            <button ng-click="addTournament()">Add Tournament</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <a id="openAddSponsorshipModalButton" class="openModalButton" href="#openAddSponsorshipModal">+Sponsorship</a>
+    <div id="openAddSponsorshipModal" class="modalDialog">
+      <div>
+        <a ng-click="filter()" href="#close" title="Close" class="close">X</a>
+        <h2>Add a sponsorship</h2>
+        <form>
+          <label>Player</label>
+          <select ng-model="new_ps_player" ng-options="player.name for player in psaData.players"></select>
+          <label>Sponsor</label>
+          <select ng-model="new_ps_sponsor" ng-options="y for (x, y) in psaData.sponsors"></select>
+          <button ng-click="addSponsorship()">Add Sponsorship</button>
+        </form>
+      </div>
+    </div>
+    <a id="openAddSponsorModalButton" class="openModalButton" href="#openAddSponsorModal">+Sponsor</a>
+    <div id="openAddSponsorModal" class="modalDialog">
+      <div>
+        <a ng-click="filter()" href="#close" title="Close" class="close">X</a>
+        <h2>Add a sponsor</h2>
+        <form>
+          <label>Name</label>
+          <input type="text" ng-model="new_sponsor">
+          <label>Country</label>
+          <select ng-model="new_sponsor_country" ng-options="y for (x, y) in psaData.countries"></select>
+          <button ng-click="addSponsor()">Add Sponsor</button>
+        </form>
+      </div>
+    </div>
+    <a id="openAddCountryModalButton" class="openModalButton" href="#openAddCountryModal">+Country</a>
+    <div id="openAddCountryModal" class="modalDialog">
+      <div>
+        <a ng-click="filter()" href="#close" title="Close" class="close">X</a>
+        <h2>Add a country</h2>
+        <form>
+          <label>Name</label>
+          <input type="text" ng-model="new_country">
+          <label>Population</label>
+          <input type="text" ng-model="new_population">
+          <button ng-click="addCountry()">Add Country</button>
         </form>
       </div>
     </div>
