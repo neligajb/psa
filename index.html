@@ -74,9 +74,9 @@
           </div>
           <div>
             <label>Winner</label>
-            <select ng-model="new_winner" ng-options="player.name for player in psaData.players"></select>
+            <select ng-model="new_winner" ng-options="player.name for player in psaData.allPlayers"></select>
             <label>Runner-Up</label>
-            <select ng-model="new_runnerup" ng-options="player.name for player in psaData.players"></select>
+            <select ng-model="new_runnerup" ng-options="player.name for player in psaData.allPlayers"></select>
             <button ng-click="addTournament()">Add Tournament</button>
           </div>
         </form>
@@ -89,7 +89,7 @@
         <h2>Add a sponsorship</h2>
         <form>
           <label>Player</label>
-          <select ng-model="new_ps_player" ng-options="player.name for player in psaData.players"></select>
+          <select ng-model="new_ps_player" ng-options="player.name for player in psaData.allPlayers"></select>
           <label>Sponsor</label>
           <select ng-model="new_ps_sponsor" ng-options="y for (x, y) in psaData.sponsors"></select>
           <button ng-click="addSponsorship()">Add Sponsorship</button>

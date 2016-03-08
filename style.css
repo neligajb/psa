@@ -44,8 +44,8 @@ header+p {
   pointer-events: none;
 }
 .modalDialog button {
-  width: 8em;
-  height: 2em;
+  min-width: 8em;
+  min-height: 2em;
   font-size: 12pt;
   border-radius: 2px;
   background-color: azure;

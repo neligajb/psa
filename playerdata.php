@@ -245,6 +245,36 @@ while ($stmt->fetch())
 $psaData['tournaments'] = $tournaments;
 
 
+//get full player list (for drop down menus)
+$stmt = NULL;
+
+if (!($stmt = $mysqli->prepare("SELECT fname, lname, pid FROM psa_players ORDER BY lname ASC")))
+  echo "Prepared statement failed: (" . $mysqli->errno . ") " . $mysqli->error;
+
+if (!$stmt->execute())
+  echo "Execute statement failed: (" . $mysqli->errno . ") " . $mysqli->error;
+
+$players = array();
+$player = array();
+
+$out_pid = NULL;
+$out_fname = NULL;
+$out_lname = NULL;
+
+if (!$stmt->bind_result($out_fname, $out_lname, $out_pid))
+  echo "Binding result failed: (" . $stmt->errno . ") " . $stmt->error;
+
+while ($stmt->fetch())
+{
+  $player['id'] = $out_pid;
+  $player['name'] = $out_fname . " " . $out_lname;
+
+  array_push($players, $player);
+}
+
+$psaData['allPlayers'] = $players;
+
+
 //get count of players in the DB
 $stmt = NULL;
 $out_count = NULL;
