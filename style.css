@@ -2,6 +2,121 @@
   font-family: Optima, Calibri, sans-serif;
 }
 
+body {
+  background-image: url("img/bg.png");
+  color: antiquewhite;
+}
+
+header+p {
+  padding-left: 2em;
+}
+
+.openModalButton {
+  display: inline-block;
+  margin-top: 30px;
+  margin-left: 10px;
+  padding: 5px;
+  color: black;
+  text-decoration: none;
+  border: 1px solid gray;
+  border-radius: 4px;
+  background-color: azure;
+  width: 98px;
+}
+
+.openModalButton:hover {
+  background-color: rgba(0, 217, 255, 0.6);
+}
+
+.modalDialog {
+  position: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+.modalDialog button {
+  min-width: 8em;
+  min-height: 2em;
+  font-size: 12pt;
+  border-radius: 2px;
+  background-color: azure;
+  cursor: pointer;
+  margin-left: 35px;
+  float: right;
+}
+
+.modalDialog button:hover {
+  background-color: rgba(0, 217, 255, 0.6);
+}
+
+.modalDialog:target {
+  opacity:1;
+  pointer-events: auto;
+}
+
+.modalDialog > div {
+  width: 400px;
+  position: relative;
+  margin: 10% auto;
+  padding: 5px 20px 13px 20px;
+  border-radius: 10px;
+  background: #fff;
+  background: linear-gradient(#fff, #999);
+  color: black;
+}
+
+.modalDialog > div > form > div > select,
+.modalDialog > div > form > select,
+.modalDialog > div > form > input,
+.modalDialog > div > form > input {
+  margin-left: 0;
+  height: 1.5em;
+  font-size: 10pt;
+  padding-left: 4px;
+}
+
+.modalDialog label {
+  margin-bottom: 3px;
+  display: block;
+}
+
+.modalDialog input, .modalDialog select {
+  margin-bottom: 23px;
+}
+
+.modalDialog > div > form > div {
+  display: inline-block;
+  width: 40%;
+  margin: 2%;
+  vertical-align: top;
+}
+
+.close {
+  background: #606061;
+  color: #FFFFFF;
+  line-height: 25px;
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  top: -10px;
+  width: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
+
 .hg {
   min-height: 90vh;
 }
@@ -28,6 +143,85 @@ footer {
   margin-top: 10px;
 }
 
+#playerTable {
+  text-align: left;
+  border-collapse: collapse;
+}
+
+#playerTable th {
+  padding-right: 45px;
+  padding-left: 5px;
+}
+
+.player-row {
+  vertical-align: top;
+}
+
+.player-row:nth-child(odd) {
+  background-color: rgba(204, 204, 204, 0.25);
+}
+
+.player-row td {
+  padding: 10px 15px 10px 5px;
+}
+
+.player-row th:last-child, .player-row td:last-child {
+  width: 100%;
+  padding-right: 0px;
+}
+
+#playerTable th:first-child {
+  min-width: 120px;
+}
+
+#playerTable th:nth-child(5) {
+  min-width: 100px;
+}
+
+#playerTable tr:first-child {
+  background-color: black;
+}
+
+#playerTable tr:hover {
+  background-color: rgba(250, 250, 210, 0.31);
+}
+
+#playerTable tr:first-child:hover {
+  background-color: black;
+}
+
+.sponsor span:after {
+  content: ", ";
+}
+
+.sponsor span:last-child:after {
+  content: "";
+}
+
+.hg-filters h3 {
+  padding-left: 10px;
+  margin-top: 10px;
+}
+
+.hg-filters h5 {
+  padding-left: 10px;
+  margin-bottom: 5px;
+}
+
+.hg-filters select {
+  min-width: 140px;
+  margin-left: 10px;
+}
+
+aside {
+  padding-bottom: 20px;
+}
+
+footer {
+  margin-top: 30px;
+  color: rgba(250, 235, 215, 0.36);
+}
+
 @media (min-width: 768px) {
   .hg-body {
     flex-direction: row;
@@ -37,7 +231,6 @@ footer {
     flex: 1;
   }
   .hg-filters {
-    /* 12em is the width of the columns */
     flex: 0 0 12em;
     margin-right: 1.5em;
   }
@@ -48,4 +241,3 @@ footer {
     padding-left: 2em;
   }
 }
-
